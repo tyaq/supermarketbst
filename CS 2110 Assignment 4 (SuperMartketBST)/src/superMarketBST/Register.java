@@ -76,13 +76,14 @@ public class Register implements Runnable {
 				// TODO Tell me it went wrong
 				e.printStackTrace();
 			};
+			index.find(q.get(0)).getData().setInStore(false);;
 			index.remove(q.get(0));
 			q.remove(0);
 			for(int i=0;i<q.size();i++){
 				q.get(i).setSpotInLine(q.get(i).getSpotInLine()-1);
 			}//end for
 			SuperMarket.served();
-			System.out.println("Served "+ SuperMarket.getPeopleServed()+" People");
+			System.out.println("\tServed "+ SuperMarket.getPeopleServed()+" People");
 			length--;
 			if(q.size()<shortestLine.getLength()) {
 				setShortestLine(this);}

@@ -4,6 +4,7 @@ public class Person implements Runnable {
         private String name;
         private int spotInLine;
         private int myNumber;
+        private boolean inStore=true;
         private Register register;
         private static int personNumber=1;
         public Person(){
@@ -71,6 +72,14 @@ public class Person implements Runnable {
         }
         public int getSpotInLine(){
                 return spotInLine;
+        }
+        
+        public void setInStore(boolean status) {
+        		inStore=status;
+        }
+        
+        public boolean getInStore() {
+        		return inStore;
         }
         
         public void setRegister(Register r){

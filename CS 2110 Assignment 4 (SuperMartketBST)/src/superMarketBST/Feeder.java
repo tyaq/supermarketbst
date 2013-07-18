@@ -43,7 +43,21 @@ public class Feeder implements Runnable {
 				Register.getShortestLine().enQ(shoppers.get(0));
 				shoppers.remove(0);
 			}//end while
-	}
+	}//End method
+	
+	/**
+	 * put people in line based on how short it is, use a initial enQ.
+	 */
+	public void enQ(String initial){
+			while(!(shoppers.isEmpty())){
+				Register.setShortestLine();
+				Register.getShortestLine().enQ(shoppers.get(0));
+				for (int i=0;i<Register.getRegisters().size();i++){
+					Register.getRegisters().get(i).getIndex().balance();;
+				}//End for
+				shoppers.remove(0);
+			}//end while
+	}//End method
 	
 	public static Feeder getTheFeeder(){
 		return theFeeder;

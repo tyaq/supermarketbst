@@ -21,7 +21,7 @@ public class SuperMarket {
 		long start=System.nanoTime();
 		//Creates Registers and Customers
 		Feeder shop = new Feeder(cust,reg);
-		shop.enQ();
+		shop.enQ("initial");
 		new Thread(shop).start();
 		for (int i=0;i<Register.getRegisters().size();i++){
 			System.out.println(Register.getRegisters().get(i).getName()+": \n"
@@ -36,7 +36,7 @@ public class SuperMarket {
 		
 		
 		long end = System.nanoTime();
-		System.out.println("Serving took "+ ((end-start)/1000000000)+" Seconds");
+		System.out.println("Serving took "+ String.format("%.2f",((end-start)/1000000000.))+" Seconds");
 		for (int i=0;i<Register.getRegisters().size();i++){
 			System.out.println(Register.getRegisters().get(i).getName()+": "
 		+Register.getRegisters().get(i));
