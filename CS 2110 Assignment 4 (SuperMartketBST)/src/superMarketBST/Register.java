@@ -33,12 +33,15 @@ public class Register implements Runnable {
 	
 	//run method for thread. Basically always be serving.
 	public void run(){
-		while (SuperMarket.getRunning()){	
+		while (SuperMarket.getRunning()){
+			//System.out.println("check empty");
 			while(!q.isEmpty()){
+				//System.out.println("in deque");
 				deQ();
+				//System.out.println("out deque");
 			}
 		}
-	}
+	}//End run
 	/**
 	 * 
 	 * @return shortestLine
@@ -67,8 +70,11 @@ public class Register implements Runnable {
 	 */
 	public void deQ() {//Cashier serves first person
 		if(!q.isEmpty()) {
+			//System.out.println("its not empty");
 			try {
+				//System.out.println("enter sleep");
 				Thread.sleep(serveSpeed);
+				//System.out.println("exit sleep");
 				System.out.print(q.get(0)+ " Served in: ");
 				System.out.println(String.format("%.2f", ((double) serveSpeed/1000)) +"s");
 
@@ -76,17 +82,23 @@ public class Register implements Runnable {
 				// TODO Tell me it went wrong
 				e.printStackTrace();
 			};
+			//System.out.println("clerical");
 			index.find(q.get(0)).getData().setInStore(false);;
 			index.remove(q.get(0));
 			q.remove(0);
+			//System.out.println("removed");
 			for(int i=0;i<q.size();i++){
 				q.get(i).setSpotInLine(q.get(i).getSpotInLine()-1);
 			}//end for
+			//System.out.println("shortness found");
 			SuperMarket.served();
 			System.out.println("\tServed "+ SuperMarket.getPeopleServed()+" People");
 			length--;
+			//System.out.println("length");
 			if(q.size()<shortestLine.getLength()) {
+				//System.out.println("in shortness");
 				setShortestLine(this);}
+			//System.out.println("done deque");
 			}//Close check if not empty
 	}//Close deQ
 	
@@ -148,7 +160,7 @@ public class Register implements Runnable {
 	 * 
 	 * @param reg
 	 */
-	public synchronized static void setShortestLine(Register reg){
+	public static void setShortestLine(Register reg){
 		shortestLine=reg;
 	};
 	

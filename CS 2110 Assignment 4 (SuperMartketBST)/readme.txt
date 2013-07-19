@@ -12,10 +12,12 @@ Features:	 All actors in the supermarket have their own AI.
 			BST can be displayed either horizontally or vertically
 			(Horizontally by default, but can be commented out in toString Method in BSTree Class)
 			Displays height of tree
+			Tree balances
 
 ReadMe:This program is poorly documented. Also, last minute testing proved that 
 This program tends to not complete on Macs if the number of customers are greater
 than 30, we believe this is because OSX has a check in place preventing large numbers of threads.
 On PC this check does not trigger so even 1000 customers works, however the speed
 of serving suffers because of the large number of threads and synchronized methods
-being used between them. Also the BST does not balance, so really it just acts like an linked list.
+being used between them. Also if the customers are not served terminate the program and check task manager
+for extra running java processes.

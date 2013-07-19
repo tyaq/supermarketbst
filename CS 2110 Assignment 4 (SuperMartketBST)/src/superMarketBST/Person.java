@@ -5,6 +5,7 @@ public class Person implements Runnable {
         private int spotInLine;
         private int myNumber;
         private boolean inStore=true;
+        Boolean initial;
         private Register register;
         private static int personNumber=1;
         public Person(){
@@ -13,6 +14,7 @@ public class Person implements Runnable {
                 personNumber++;
                 Thread t = new Thread(this);
                 t.setName(name);
+                initial=true;
                 t.start();
                 
                 
@@ -21,14 +23,17 @@ public class Person implements Runnable {
         
         public void run(){
         	while(SuperMarket.getRunning()){
+        		//if (initial) {
         		try {
         			//Gives start up processes some buffer time.
-					Thread.sleep(1000);
+					Thread.sleep(personNumber*10);
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				
 				}
+        		//initial=false;
+        		//}//End if
         		while(spotInLine != 1) {
         			leave();
         		}
